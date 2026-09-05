@@ -1,0 +1,19 @@
+version: 1
+# Frontend-only build. The amplify/ backend folder is intentionally NOT deployed
+# by Amplify Hosting yet — it lives in the local `npx ampx sandbox` until Module 04.
+# When we add a `backend:` phase later it will run `npx ampx pipeline-deploy`.
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
