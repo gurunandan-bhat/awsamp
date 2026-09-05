@@ -4,6 +4,7 @@ Started: 2026-09-03
 Working dir: /home/nandan/repos/awsamp
 Learner: gbhat@pobox.com
 AWS account: 566275025856 · Region: ap-south-1 (Mumbai) · CLI identity: IAM user `amplifier`
+Dev machine: remote, LAN IP 192.168.1.100 · VS Code runs locally and connects to it
 
 ## Goal
 
@@ -219,6 +220,26 @@ in the deployment only because `backend.ts` references it.
   2. **Cognito emails via SES** — set on `defineAuth` (`senders.email`) or by
      overriding the underlying Cognito construct in `backend.ts`, pointed at a
      verified `fromEmail`.
+
+## Working environment note: remote dev machine
+
+This box is remote (192.168.1.100); VS Code and the browser are local. Any dev
+server that defaults to binding `localhost` only is unreachable from there —
+needs to listen on all interfaces instead.
+
+For Vite: `vite.config.mjs` (note the `.mjs`, not `.js` — this repo's root
+`package.json` is `"type": "commonjs"` for the Amplify tooling, and Vite's
+config-file loader wants ESM `import`/`export` syntax; `.mjs` sidesteps the
+mismatch without changing the root package type) sets:
+```js
+export default defineConfig({
+  server: { host: true },
+  preview: { host: true },
+});
+```
+`host: true` binds `0.0.0.0` (not one hardcoded IP), so it's reachable at
+`http://192.168.1.100:<port>` regardless of which interface/IP the box has.
+Apply the same pattern to any future dev server on this machine (Vite or not).
 
 ## Toolchain / commands
 

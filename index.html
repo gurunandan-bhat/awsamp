@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amplify Gen 2 Learning Log</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">AWS Amplify Gen 2 &middot; Module 01</p>
+        <h1>Learning Log</h1>
+        <p class="lede">
+          A small app built module by module to learn Amplify Gen 2: static
+          hosting first, then Cognito auth, then a REST API backed by API
+          Gateway, a Go Lambda, and DynamoDB.
+        </p>
+      </header>
+
+      <section>
+        <h2>What's being built here</h2>
+        <ul id="modules">
+          <li><strong>Module 00 — Setup.</strong> AWS credentials, CDK bootstrap, the Amplify sandbox.</li>
+          <li><strong>Module 01 — Static site.</strong> This page: served by Vite, deployed by Amplify Hosting.</li>
+          <li><strong>Module 02 — Auth.</strong> Sign up, confirm, sign in with Cognito — hand-built, no UI kit.</li>
+          <li><strong>Module 03 — Data.</strong> A REST API (API Gateway &rarr; Go Lambda &rarr; DynamoDB), scoped per signed-in user.</li>
+          <li><strong>Module 04 — Hardening.</strong> Branch deploys, least privilege, observability.</li>
+        </ul>
+      </section>
+
+      <section>
+        <button id="toggle-status" type="button" aria-expanded="false" aria-controls="status">
+          Show build status
+        </button>
+        <div id="status" hidden></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
